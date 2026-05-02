@@ -1,0 +1,63 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "sec": "https://w3id.org/security#",
+    "saasalerts": "https://api.saasalerts.com/terms/",
+
+    "SecurityEvent": {
+      "@id": "schema:Event",
+      "@type": "@id"
+    },
+    "SecurityAlert": {
+      "@id": "schema:Action",
+      "@type": "@id"
+    },
+    "eventId": "dcterms:identifier",
+    "eventType": {
+      "@id": "schema:eventType",
+      "@type": "xsd:string"
+    },
+    "alertStatus": "schema:status",
+    "timestamp": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "application": {
+      "@id": "schema:SoftwareApplication",
+      "@type": "xsd:string"
+    },
+    "customerId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "customerName": "schema:name",
+    "userId": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "sourceIp": {
+      "@id": "schema:ipAddress",
+      "@type": "xsd:string"
+    },
+    "resolved": {
+      "@id": "schema:actionStatus",
+      "@type": "xsd:boolean"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "resolvedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "details": "schema:additionalProperty",
+    "relatedEvents": {
+      "@id": "schema:relatedLink",
+      "@type": "@id"
+    }
+  }
+}

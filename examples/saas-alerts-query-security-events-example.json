@@ -1,0 +1,55 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.saasalerts.com/reports/event/query",
+    "headers": {
+      "X-API-Key": "your_api_key_here",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "eventTypes": ["login.failure", "impossible.travel", "mfa.disable"],
+      "alertStatus": ["critical", "medium"],
+      "startDate": "2024-01-01T00:00:00Z",
+      "endDate": "2024-01-31T23:59:59Z",
+      "applications": ["microsoft365", "google_workspace"],
+      "pageSize": 25,
+      "page": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "events": [
+        {
+          "eventId": "evt_aabbccddeeff1122",
+          "eventType": "impossible.travel",
+          "jointDesc": "IAM Event - Impossible Travel Detected",
+          "alertStatus": "critical",
+          "application": "google_workspace",
+          "customerId": "cust_xyz789",
+          "customerName": "Globex Corp",
+          "userId": "alice@globex.com",
+          "sourceIp": "195.28.91.100",
+          "timestamp": "2024-01-10T08:45:22Z",
+          "details": {
+            "previousLocationCity": "New York",
+            "previousLocationCountry": "US",
+            "currentLocationCity": "Shanghai",
+            "currentLocationCountry": "CN",
+            "timeDifferenceMinutes": 47
+          }
+        }
+      ],
+      "pagination": {
+        "page": 1,
+        "pageSize": 25,
+        "totalPages": 1,
+        "totalCount": 1
+      }
+    }
+  }
+}

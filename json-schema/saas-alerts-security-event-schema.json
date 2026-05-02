@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/saas-alerts/refs/heads/main/json-schema/saas-alerts-security-event-schema.json",
+  "title": "SaaS Alerts Security Event",
+  "description": "Schema for a SaaS Alerts security event detected across monitored SaaS applications",
+  "type": "object",
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "description": "Unique event identifier",
+      "example": "evt_1234567890abcdef"
+    },
+    "eventType": {
+      "type": "string",
+      "description": "Machine-readable event type classification",
+      "enum": [
+        "login.success",
+        "login.failure",
+        "cross.ip.connections",
+        "file.sharing.external",
+        "oauth.granted.permission",
+        "oauth.revoked.permission",
+        "admin.new.admin",
+        "admin.removed.admin",
+        "mfa.disable",
+        "mfa.new.device",
+        "account.suspended",
+        "account.password.changed",
+        "policy.security.changed",
+        "mail.forwarding.added",
+        "mail.forwarding.removed",
+        "mail.rule.created",
+        "mail.rule.deleted",
+        "file.deleted",
+        "file.downloaded",
+        "file.uploaded",
+        "data.exfiltration",
+        "impossible.travel",
+        "brute.force.attack",
+        "api.access.granted",
+        "api.access.revoked"
+      ],
+      "example": "login.failure"
+    },
+    "jointDesc": {
+      "type": "string",
+      "description": "Human-readable event description",
+      "example": "IAM Event - Authentication Failure"
+    },
+    "alertStatus": {
+      "type": "string",
+      "description": "Event severity level",
+      "enum": ["low", "medium", "critical"],
+      "example": "critical"
+    },
+    "application": {
+      "type": "string",
+      "description": "SaaS application where the event occurred",
+      "enum": [
+        "microsoft365",
+        "google_workspace",
+        "salesforce",
+        "slack",
+        "dropbox"
+      ],
+      "example": "microsoft365"
+    },
+    "customerId": {
+      "type": "string",
+      "description": "MSP customer/tenant identifier",
+      "example": "cust_abc123"
+    },
+    "customerName": {
+      "type": "string",
+      "description": "Customer organization name",
+      "example": "Acme Corporation"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Affected user identifier (email address)",
+      "example": "user@acme.com"
+    },
+    "sourceIp": {
+      "type": "string",
+      "format": "ipv4",
+      "description": "Source IP address of the event",
+      "example": "198.51.100.42"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Event timestamp in ISO 8601 format",
+      "example": "2024-01-15T14:23:11Z"
+    },
+    "details": {
+      "type": "object",
+      "description": "Additional event-specific details",
+      "additionalProperties": true
+    }
+  },
+  "required": ["eventId", "eventType", "alertStatus", "application", "customerId", "userId", "timestamp"]
+}

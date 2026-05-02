@@ -1,0 +1,57 @@
+aid: saas-alerts
+name: SaaS Alerts Vocabulary
+description: >-
+  Vocabulary and terminology for the SaaS Alerts MSP security monitoring platform
+  covering event types, severity levels, integrations, and security concepts.
+terms:
+  - term: MSP
+    definition: >-
+      Managed Service Provider — an IT services company that remotely manages
+      customer IT infrastructure and SaaS environments. SaaS Alerts is purpose-built
+      for MSP security teams.
+  - term: Event Type
+    definition: >-
+      A machine-readable classification of a security occurrence (e.g.,
+      login.failure, data.exfiltration, impossible.travel) detected by the
+      SaaS Alerts platform across monitored applications.
+  - term: Alert Status
+    definition: >-
+      The severity classification of a security event: low (informational),
+      medium (warrants investigation), or critical (immediate action required).
+  - term: jointDesc
+    definition: >-
+      The human-readable description of a security event combining the
+      event category and specific action (e.g., "IAM Event - Authentication
+      Failure", "File Share Event - External").
+  - term: Impossible Travel
+    definition: >-
+      A security event where a user authenticates from two geographically
+      distant locations within a timeframe that makes physical travel impossible.
+  - term: OAuth Permission
+    definition: >-
+      Authorization granted to a third-party application to access a user's
+      SaaS account data via OAuth 2.0; monitored for unauthorized grants.
+  - term: Brute Force Attack
+    definition: >-
+      A credential attack involving many repeated login attempts to gain
+      unauthorized access to a user account.
+  - term: Data Exfiltration
+    definition: >-
+      Unauthorized transfer of data outside an organization's controlled
+      environment, such as sharing files externally or bulk downloads.
+  - term: Customer
+    definition: >-
+      An MSP's end-client organization whose SaaS applications are monitored
+      by SaaS Alerts; each customer is a separate tenant in the platform.
+  - term: Multi-tenant
+    definition: >-
+      Platform architecture allowing a single MSP to monitor multiple
+      customer organizations (tenants) from a single console.
+  - term: Honeytoken
+    definition: >-
+      A decoy credential or data element deliberately placed to detect
+      unauthorized access; SaaS Alerts can monitor honeytoken triggers.
+  - term: API Key
+    definition: >-
+      Authentication credential for the SaaS Alerts API; generated in the
+      management interface and passed in the X-API-Key request header.

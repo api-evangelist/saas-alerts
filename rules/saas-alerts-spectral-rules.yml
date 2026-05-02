@@ -1,0 +1,89 @@
+extends: spectral:oas
+rules:
+  saas-alerts-summary-title-case:
+    description: All operation summaries must use Title Case
+    message: "Operation summary '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*(\\s[A-Z][a-zA-Z0-9]*)*$"
+
+  saas-alerts-tags-title-case:
+    description: All tags must use Title Case
+    message: "Tag '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.paths[*][*].tags[*]"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*(\\s[A-Z][a-zA-Z0-9]*)*$"
+
+  saas-alerts-operation-ids-camel-case:
+    description: Operation IDs must use camelCase
+    message: "Operation ID '{{value}}' must use camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  saas-alerts-security-scheme-required:
+    description: All operations must define security requirements
+    message: "Operation must define security requirements (API key authentication required)"
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: security
+      function: truthy
+
+  saas-alerts-pagination-params:
+    description: List operations should support pagination with pageSize and page parameters
+    message: "GET list operations should include pageSize and page query parameters"
+    severity: warn
+    given: "$.paths[*][get]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  saas-alerts-parameters-have-descriptions:
+    description: All parameters must have descriptions
+    message: "Parameter must have a description"
+    severity: warn
+    given: "$.paths[*][*].parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  saas-alerts-enum-alert-status-values:
+    description: alertStatus parameters must use defined enum values
+    message: "alertStatus must be one of: low, medium, critical"
+    severity: error
+    given: "$.paths[*][*].parameters[?(@.name == 'alertStatus')].schema"
+    then:
+      field: enum
+      function: truthy
+
+  saas-alerts-paths-kebab-case:
+    description: Path segments must use kebab-case
+    message: "Path segments must use kebab-case"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "[A-Z_]"
+
+  saas-alerts-schema-names-pascal-case:
+    description: Component schema names must use PascalCase
+    message: "Schema name must use PascalCase"
+    severity: warn
+    given: "$.components.schemas[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*$"

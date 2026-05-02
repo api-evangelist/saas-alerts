@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.saasalerts.com/reports/events?alertStatus=critical&application=microsoft365&pageSize=10",
+    "headers": {
+      "X-API-Key": "your_api_key_here",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "events": [
+        {
+          "eventId": "evt_1234567890abcdef",
+          "eventType": "brute.force.attack",
+          "jointDesc": "IAM Event - Brute Force Attack Detected",
+          "alertStatus": "critical",
+          "application": "microsoft365",
+          "customerId": "cust_abc123",
+          "customerName": "Acme Corporation",
+          "userId": "john.doe@acme.com",
+          "sourceIp": "198.51.100.42",
+          "timestamp": "2024-01-15T14:23:11Z",
+          "details": {
+            "failedAttempts": 47,
+            "locationCity": "Moscow",
+            "locationCountry": "RU"
+          }
+        },
+        {
+          "eventId": "evt_9876543210fedcba",
+          "eventType": "data.exfiltration",
+          "jointDesc": "File Share Event - External Data Exfiltration",
+          "alertStatus": "critical",
+          "application": "microsoft365",
+          "customerId": "cust_abc123",
+          "customerName": "Acme Corporation",
+          "userId": "jane.smith@acme.com",
+          "sourceIp": "203.0.113.15",
+          "timestamp": "2024-01-15T12:10:33Z",
+          "details": {
+            "filesShared": 23,
+            "externalEmail": "unknown@gmail.com",
+            "totalSizeBytes": 15728640
+          }
+        }
+      ],
+      "pagination": {
+        "page": 1,
+        "pageSize": 10,
+        "totalPages": 3,
+        "totalCount": 28
+      }
+    }
+  }
+}

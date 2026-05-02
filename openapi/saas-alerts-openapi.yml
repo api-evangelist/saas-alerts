@@ -1,0 +1,612 @@
+openapi: 3.0.3
+info:
+  title: SaaS Alerts API
+  description: >-
+    The SaaS Alerts API provides programmatic access to the SaaS Alerts
+    security monitoring platform for MSPs. The API enables querying of security
+    events, alerts, and user behavior data detected across monitored SaaS
+    applications including Microsoft 365, Google Workspace, Salesforce, Slack,
+    and Dropbox. Authentication uses API keys generated from the SaaS Alerts
+    management interface.
+  version: 0.20.0
+  contact:
+    name: SaaS Alerts Support
+    url: https://help.saasalerts.kaseya.com
+  termsOfService: https://www.saasalerts.com/terms
+servers:
+  - url: https://api.saasalerts.com
+    description: SaaS Alerts production API server
+tags:
+  - name: Events
+    description: SaaS security event queries and reporting
+  - name: Reports
+    description: Security event report generation
+paths:
+  /reports/events:
+    get:
+      operationId: listSecurityEvents
+      summary: List Security Events
+      description: >-
+        Returns a list of security events detected across monitored SaaS
+        applications. Supports filtering by event type, application, customer,
+        date range, and severity.
+      tags:
+        - Events
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: eventType
+          in: query
+          required: false
+          description: Filter by event type
+          schema:
+            type: string
+            enum:
+              - login.success
+              - login.failure
+              - cross.ip.connections
+              - file.sharing.external
+              - oauth.granted.permission
+              - oauth.revoked.permission
+              - admin.new.admin
+              - admin.removed.admin
+              - mfa.disable
+              - mfa.new.device
+              - account.suspended
+              - account.password.changed
+              - policy.security.changed
+              - mail.forwarding.added
+              - mail.forwarding.removed
+              - mail.rule.created
+              - mail.rule.deleted
+              - file.deleted
+              - file.downloaded
+              - file.uploaded
+              - data.exfiltration
+              - impossible.travel
+              - brute.force.attack
+              - api.access.granted
+              - api.access.revoked
+            example: login.failure
+        - name: alertStatus
+          in: query
+          required: false
+          description: Filter by alert severity
+          schema:
+            type: string
+            enum:
+              - low
+              - medium
+              - critical
+            example: critical
+        - name: startDate
+          in: query
+          required: false
+          description: Filter events from this date (ISO 8601 format)
+          schema:
+            type: string
+            format: date-time
+            example: '2024-01-01T00:00:00Z'
+        - name: endDate
+          in: query
+          required: false
+          description: Filter events up to this date (ISO 8601 format)
+          schema:
+            type: string
+            format: date-time
+            example: '2024-01-31T23:59:59Z'
+        - name: customerId
+          in: query
+          required: false
+          description: Filter by MSP customer/tenant identifier
+          schema:
+            type: string
+            example: cust_abc123
+        - name: application
+          in: query
+          required: false
+          description: Filter by monitored SaaS application
+          schema:
+            type: string
+            enum:
+              - microsoft365
+              - google_workspace
+              - salesforce
+              - slack
+              - dropbox
+            example: microsoft365
+        - name: pageSize
+          in: query
+          required: false
+          description: Number of events per page (max 100)
+          schema:
+            type: integer
+            maximum: 100
+            default: 25
+        - name: page
+          in: query
+          required: false
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: List of security events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '403':
+          description: Forbidden - insufficient permissions
+  /reports/event/query:
+    post:
+      operationId: querySecurityEvents
+      summary: Query Security Events
+      description: >-
+        Executes a structured JSON query against the SaaS Alerts event data
+        indexes. Supports complex filtering with multiple conditions, date
+        ranges, event types, and severity levels. Returns matching events in
+        JSON format.
+      tags:
+        - Events
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventQueryRequest'
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsResponse'
+        '400':
+          description: Invalid query format
+        '401':
+          description: Unauthorized
+  /reports/alerts:
+    get:
+      operationId: listAlerts
+      summary: List Security Alerts
+      description: >-
+        Returns a list of active and historical security alerts across all
+        monitored customers and applications. Alerts are generated when
+        anomalous or suspicious behavior is detected.
+      tags:
+        - Reports
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: alertStatus
+          in: query
+          required: false
+          description: Filter alerts by severity
+          schema:
+            type: string
+            enum:
+              - low
+              - medium
+              - critical
+        - name: resolved
+          in: query
+          required: false
+          description: Filter by resolution status
+          schema:
+            type: boolean
+        - name: customerId
+          in: query
+          required: false
+          description: Filter by customer identifier
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          required: false
+          description: Filter alerts from this date
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          required: false
+          description: Filter alerts up to this date
+          schema:
+            type: string
+            format: date-time
+        - name: pageSize
+          in: query
+          required: false
+          description: Number of alerts per page
+          schema:
+            type: integer
+            maximum: 100
+            default: 25
+        - name: page
+          in: query
+          required: false
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: List of security alerts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertsResponse'
+        '401':
+          description: Unauthorized
+  /reports/customers:
+    get:
+      operationId: listCustomers
+      summary: List Monitored Customers
+      description: >-
+        Returns a list of MSP customer tenants being monitored by the SaaS
+        Alerts platform.
+      tags:
+        - Reports
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: pageSize
+          in: query
+          required: false
+          description: Number of customers per page
+          schema:
+            type: integer
+            default: 25
+        - name: page
+          in: query
+          required: false
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: List of monitored customers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomersResponse'
+        '401':
+          description: Unauthorized
+  /reports/users:
+    get:
+      operationId: listUsers
+      summary: List Monitored Users
+      description: >-
+        Returns a list of users across monitored customer tenants. Includes
+        user activity summary and risk indicators.
+      tags:
+        - Reports
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: customerId
+          in: query
+          required: false
+          description: Filter by customer identifier
+          schema:
+            type: string
+        - name: application
+          in: query
+          required: false
+          description: Filter by application
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          required: false
+          description: Number of users per page
+          schema:
+            type: integer
+            default: 25
+        - name: page
+          in: query
+          required: false
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: List of monitored users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    EventQueryRequest:
+      type: object
+      properties:
+        eventTypes:
+          type: array
+          description: List of event types to filter by
+          items:
+            type: string
+          example:
+            - login.failure
+            - brute.force.attack
+        alertStatus:
+          type: array
+          description: List of severity levels to include
+          items:
+            type: string
+            enum:
+              - low
+              - medium
+              - critical
+          example:
+            - critical
+            - medium
+        jointDesc:
+          type: array
+          description: List of event description filters
+          items:
+            type: string
+          example:
+            - IAM Event - Authentication Failure
+            - File Share Event - External
+        startDate:
+          type: string
+          format: date-time
+          description: Start of query date range
+          example: '2024-01-01T00:00:00Z'
+        endDate:
+          type: string
+          format: date-time
+          description: End of query date range
+          example: '2024-01-31T23:59:59Z'
+        customerIds:
+          type: array
+          description: Customer identifiers to include
+          items:
+            type: string
+        applications:
+          type: array
+          description: SaaS applications to filter by
+          items:
+            type: string
+        pageSize:
+          type: integer
+          description: Number of results per page
+          default: 25
+        page:
+          type: integer
+          description: Page number
+          default: 1
+    EventsResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityEvent'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    SecurityEvent:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: Unique event identifier
+          example: evt_1234567890abcdef
+        eventType:
+          type: string
+          description: Event type classification
+          example: login.failure
+        jointDesc:
+          type: string
+          description: Human-readable event description
+          example: IAM Event - Authentication Failure
+        alertStatus:
+          type: string
+          description: Event severity
+          enum:
+            - low
+            - medium
+            - critical
+          example: critical
+        application:
+          type: string
+          description: SaaS application where event occurred
+          example: microsoft365
+        customerId:
+          type: string
+          description: Customer/tenant identifier
+          example: cust_abc123
+        customerName:
+          type: string
+          description: Customer name
+          example: Acme Corporation
+        userId:
+          type: string
+          description: User identifier
+          example: user@acme.com
+        sourceIp:
+          type: string
+          description: Source IP address
+          example: 198.51.100.42
+        timestamp:
+          type: string
+          format: date-time
+          description: Event timestamp
+          example: '2024-01-15T14:23:11Z'
+        details:
+          type: object
+          description: Additional event-specific details
+          additionalProperties: true
+    AlertsResponse:
+      type: object
+      properties:
+        alerts:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityAlert'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    SecurityAlert:
+      type: object
+      properties:
+        alertId:
+          type: string
+          description: Unique alert identifier
+          example: alert_9876543210
+        alertStatus:
+          type: string
+          description: Alert severity
+          enum:
+            - low
+            - medium
+            - critical
+          example: critical
+        title:
+          type: string
+          description: Alert title
+          example: Multiple Failed Login Attempts Detected
+        description:
+          type: string
+          description: Alert description and context
+        customerId:
+          type: string
+          description: Affected customer identifier
+        customerName:
+          type: string
+          description: Affected customer name
+        application:
+          type: string
+          description: Affected SaaS application
+        userId:
+          type: string
+          description: Affected user identifier
+        resolved:
+          type: boolean
+          description: Whether alert has been resolved
+        createdAt:
+          type: string
+          format: date-time
+          description: Alert creation timestamp
+        resolvedAt:
+          type: string
+          format: date-time
+          description: Alert resolution timestamp (if resolved)
+        relatedEvents:
+          type: array
+          description: Event IDs that triggered this alert
+          items:
+            type: string
+    CustomersResponse:
+      type: object
+      properties:
+        customers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: Unique customer identifier
+          example: cust_abc123
+        name:
+          type: string
+          description: Customer organization name
+          example: Acme Corporation
+        applications:
+          type: array
+          description: Monitored SaaS applications for this customer
+          items:
+            type: string
+          example:
+            - microsoft365
+            - google_workspace
+        userCount:
+          type: integer
+          description: Number of monitored users
+          example: 150
+        status:
+          type: string
+          description: Monitoring status
+          enum:
+            - active
+            - inactive
+            - suspended
+          example: active
+        createdAt:
+          type: string
+          format: date-time
+          description: Customer onboarding date
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitoredUser'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    MonitoredUser:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User email or identifier
+          example: user@acme.com
+        customerId:
+          type: string
+          description: Customer identifier
+        customerName:
+          type: string
+          description: Customer name
+        applications:
+          type: array
+          description: Monitored applications for this user
+          items:
+            type: string
+        lastActivity:
+          type: string
+          format: date-time
+          description: Most recent event timestamp
+        riskScore:
+          type: integer
+          description: Computed user risk score (0-100)
+          minimum: 0
+          maximum: 100
+        alertCount:
+          type: integer
+          description: Number of active alerts for this user
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Records per page
+        totalPages:
+          type: integer
+          description: Total number of pages
+        totalCount:
+          type: integer
+          description: Total record count
