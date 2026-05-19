@@ -1,0 +1,165 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SaaS Alerts API — Events
+  description: 'SaaS Alerts API — Events. 2 operations. Lead operation: Query Security Events. Self-contained Naftiko capability
+    covering one Saas Alerts business surface.'
+  tags:
+  - Saas Alerts
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SAAS_ALERTS_API_KEY: SAAS_ALERTS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: saas-alerts-events
+    baseUri: https://api.saasalerts.com
+    description: SaaS Alerts API — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: reports-event-query
+      path: /reports/event/query
+      operations:
+      - name: querysecurityevents
+        method: POST
+        description: Query Security Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: reports-events
+      path: /reports/events
+      operations:
+      - name: listsecurityevents
+        method: GET
+        description: List Security Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventType
+          in: query
+          type: string
+          description: Filter by event type
+        - name: alertStatus
+          in: query
+          type: string
+          description: Filter by alert severity
+        - name: startDate
+          in: query
+          type: string
+          description: Filter events from this date (ISO 8601 format)
+        - name: endDate
+          in: query
+          type: string
+          description: Filter events up to this date (ISO 8601 format)
+        - name: customerId
+          in: query
+          type: string
+          description: Filter by MSP customer/tenant identifier
+        - name: application
+          in: query
+          type: string
+          description: Filter by monitored SaaS application
+        - name: pageSize
+          in: query
+          type: integer
+          description: Number of events per page (max 100)
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.SAAS_ALERTS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: saas-alerts-events-rest
+    port: 8080
+    description: REST adapter for SaaS Alerts API — Events. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/reports/event/query
+      name: reports-event-query
+      description: REST surface for reports-event-query.
+      operations:
+      - method: POST
+        name: querysecurityevents
+        description: Query Security Events
+        call: saas-alerts-events.querysecurityevents
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/events
+      name: reports-events
+      description: REST surface for reports-events.
+      operations:
+      - method: GET
+        name: listsecurityevents
+        description: List Security Events
+        call: saas-alerts-events.listsecurityevents
+        with:
+          eventType: rest.eventType
+          alertStatus: rest.alertStatus
+          startDate: rest.startDate
+          endDate: rest.endDate
+          customerId: rest.customerId
+          application: rest.application
+          pageSize: rest.pageSize
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: saas-alerts-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SaaS Alerts API — Events. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: query-security-events
+      description: Query Security Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: saas-alerts-events.querysecurityevents
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-security-events
+      description: List Security Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: saas-alerts-events.listsecurityevents
+      with:
+        eventType: tools.eventType
+        alertStatus: tools.alertStatus
+        startDate: tools.startDate
+        endDate: tools.endDate
+        customerId: tools.customerId
+        application: tools.application
+        pageSize: tools.pageSize
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
