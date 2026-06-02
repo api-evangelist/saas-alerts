@@ -2,13 +2,13 @@
   "repo": "saas-alerts",
   "feeds": [
     {
-      "source": "https://www.saasalerts.com/blog",
-      "feed_url": "",
+      "source": "https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm",
+      "feed_url": "https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm",
       "title": "",
       "saved": 0,
-      "error": "no_feed"
+      "method": "none"
     }
   ],
-  "fetched": "2026-05-17T20:48:52Z",
+  "fetched": "2026-06-01T23:35:02Z",
   "post_count": 0
 }
