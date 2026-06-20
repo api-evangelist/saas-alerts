@@ -7,7 +7,7 @@ description: >-
   machine learning-based threat detection, automated remediation workflows, multi-tenant MSP management, and integration
   with PSA and RMM platforms. SaaS Alerts was acquired by Kaseya in 2023.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/saas-alerts/refs/heads/main/apis.yml
 tags:
   - MSP
