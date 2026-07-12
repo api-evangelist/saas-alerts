@@ -45,6 +45,10 @@ apis:
       - type: Authentication
         url: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
 common:
+  - type: DomainSecurity
+    url: security/saas-alerts-domain-security.yml
+  - type: Authentication
+    url: authentication/saas-alerts-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/saas-alerts
   - type: Website

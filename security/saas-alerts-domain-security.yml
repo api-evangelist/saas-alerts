@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.saasalerts.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 27 17:01:28 2026 GMT
+  hsts: null
+- host: help.saasalerts.kaseya.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov  7 23:59:59 2026 GMT
+  hsts: false
+- host: api.saasalerts.com
+  https: false
+domains:
+- domain: saasalerts.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: kaseya.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
