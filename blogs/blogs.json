@@ -2,11 +2,13 @@
   "repo": "saas-alerts",
   "feeds": [
     {
-      "source": "https://www.saasalerts.com/blog",
+      "source": "https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm",
+      "feed_url": "https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm",
+      "title": "",
       "saved": 0,
-      "error": "HTTP 403 Forbidden"
+      "method": "none"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-27T13:07:48Z"
+  "fetched": "2026-07-11T11:50:51Z"
 }
