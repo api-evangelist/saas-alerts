@@ -45,6 +45,8 @@ apis:
       - type: Authentication
         url: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
 common:
+  - type: AgenticAccess
+    url: agentic-access/saas-alerts-agentic-access.yml
   - type: DomainSecurity
     url: security/saas-alerts-domain-security.yml
   - type: Authentication
