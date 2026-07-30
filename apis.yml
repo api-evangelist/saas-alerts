@@ -7,7 +7,20 @@ description: >-
   machine learning-based threat detection, automated remediation workflows, multi-tenant MSP management, and integration
   with PSA and RMM platforms. SaaS Alerts was acquired by Kaseya in 2023.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/saas-alerts.png
 url: https://raw.githubusercontent.com/api-evangelist/saas-alerts/refs/heads/main/apis.yml
 tags:
   - MSP
@@ -21,30 +34,41 @@ created: '2026-03-27'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: saas-alerts:saas-alerts
-    name: SaaS Alerts API
-    description: >-
-      REST API (v0.20.0) providing programmatic access to the SaaS Alerts security monitoring platform. Enables MSP
-      tools and SIEM/SOAR integrations to query security events, retrieve alerts, and access monitored user and customer
-      data. Eight API methods including GET and POST operations for event querying and reporting. Authentication uses
-      API keys generated in the management interface.
-    humanURL: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
-    baseURL: https://api.saasalerts.com
-    tags:
-      - SaaS Security
-      - Events
-      - Alerts
-      - MSP
-    properties:
-      - type: Documentation
-        url: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/saas-alerts/refs/heads/main/openapi/saas-alerts-openapi.yml
-      - type: SwaggerHub
-        url: https://app.swaggerhub.com/apis/SaaS_Alerts/functions/0.20.0
-      - type: Authentication
-        url: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
+- aid: saas-alerts:saas-alerts-events-api
+  name: SaaS Alerts Events API
+  description: SaaS security event queries and reporting
+  humanURL: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
+  baseURL: https://api.saasalerts.com
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/saas-alerts-events-api-openapi.yml
+  - type: Documentation
+    url: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
+  - type: SwaggerHub
+    url: https://app.swaggerhub.com/apis/SaaS_Alerts/functions/0.20.0
+  - type: Authentication
+    url: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
+- aid: saas-alerts:saas-alerts-reports-api
+  name: SaaS Alerts Reports API
+  description: Security event report generation
+  humanURL: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
+  baseURL: https://api.saasalerts.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/saas-alerts-reports-api-openapi.yml
+  - type: Documentation
+    url: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
+  - type: SwaggerHub
+    url: https://app.swaggerhub.com/apis/SaaS_Alerts/functions/0.20.0
+  - type: Authentication
+    url: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/saas-alerts/overview
   - type: AgenticAccess
     url: agentic-access/saas-alerts-agentic-access.yml
   - type: DomainSecurity
