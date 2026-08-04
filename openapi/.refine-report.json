@@ -1,0 +1,16 @@
+{
+  "provider": "saas-alerts",
+  "sources": [
+    "saas-alerts-events-api-openapi.yml",
+    "saas-alerts-reports-api-openapi.yml"
+  ],
+  "outputs": [
+    "saas-alerts-events-api-openapi.yml",
+    "saas-alerts-reports-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
