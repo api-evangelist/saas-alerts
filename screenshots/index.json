@@ -6,5 +6,14 @@
     "source_type": "Documentation",
     "file": "saas-alerts-2026-06-20T193314.png",
     "bytes": 11573
+  },
+  {
+    "repo": "saas-alerts",
+    "captured_at": "2026-08-17T083027",
+    "source_url": "https://www.saasalerts.com",
+    "source_type": "Website",
+    "file": "saas-alerts-2026-08-17T083027.png",
+    "bytes": 175124,
+    "capture": "playwright-local"
   }
 ]

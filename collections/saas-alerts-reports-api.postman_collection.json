@@ -1,0 +1,631 @@
+{
+  "item": [
+    {
+      "id": "bb27b02b-2d30-4344-a710-8cf25608c82e",
+      "name": "Reports",
+      "description": {
+        "content": "Security event report generation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2706912-a179-42fa-9a71-8ea6e893f9ff",
+          "name": "List Security Alerts",
+          "request": {
+            "name": "List Security Alerts",
+            "description": {
+              "content": "Returns a list of active and historical security alerts across all monitored customers and applications. Alerts are generated when anomalous or suspicious behavior is detected.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                "alerts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "alertStatus",
+                  "value": "<string>",
+                  "description": "Filter alerts by severity"
+                },
+                {
+                  "disabled": false,
+                  "key": "resolved",
+                  "value": "<boolean>",
+                  "description": "Filter by resolution status"
+                },
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<string>",
+                  "description": "Filter by customer identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "Filter alerts from this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "Filter alerts up to this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25",
+                  "description": "Number of alerts per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9da4fa2d-0641-43ef-b534-fb78ff0560b2",
+              "name": "List of security alerts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "alerts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alertStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolved",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"alertId\": \"alert_9876543210\",\n      \"alertStatus\": \"critical\",\n      \"title\": \"Multiple Failed Login Attempts Detected\",\n      \"description\": \"string\",\n      \"customerId\": \"string\",\n      \"customerName\": \"string\",\n      \"application\": \"string\",\n      \"userId\": \"string\",\n      \"resolved\": true,\n      \"createdAt\": \"1987-03-14T08:46:45.281Z\",\n      \"resolvedAt\": \"1975-09-21T15:02:19.004Z\",\n      \"relatedEvents\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"alertId\": \"alert_9876543210\",\n      \"alertStatus\": \"critical\",\n      \"title\": \"Multiple Failed Login Attempts Detected\",\n      \"description\": \"string\",\n      \"customerId\": \"string\",\n      \"customerName\": \"string\",\n      \"application\": \"string\",\n      \"userId\": \"string\",\n      \"resolved\": false,\n      \"createdAt\": \"1974-10-22T05:55:20.209Z\",\n      \"resolvedAt\": \"1999-11-19T03:29:50.378Z\",\n      \"relatedEvents\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"page\": 6988,\n    \"pageSize\": 9862,\n    \"totalPages\": 9194,\n    \"totalCount\": 6249\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cab53ba2-6687-4c81-aad7-1f5f959e3ea6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "alerts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alertStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolved",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e35d79d-c410-49c1-befa-041222af3169",
+          "name": "List Monitored Customers",
+          "request": {
+            "name": "List Monitored Customers",
+            "description": {
+              "content": "Returns a list of MSP customer tenants being monitored by the SaaS Alerts platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25",
+                  "description": "Number of customers per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "810e7599-1f27-4ad0-8333-ed15dfa088de",
+              "name": "List of monitored customers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customers\": [\n    {\n      \"customerId\": \"cust_abc123\",\n      \"name\": \"Acme Corporation\",\n      \"applications\": [\n        \"microsoft365\",\n        \"google_workspace\"\n      ],\n      \"userCount\": 150,\n      \"status\": \"active\",\n      \"createdAt\": \"1962-11-21T12:49:03.194Z\"\n    },\n    {\n      \"customerId\": \"cust_abc123\",\n      \"name\": \"Acme Corporation\",\n      \"applications\": [\n        \"microsoft365\",\n        \"google_workspace\"\n      ],\n      \"userCount\": 150,\n      \"status\": \"active\",\n      \"createdAt\": \"2011-12-16T01:13:22.958Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 4000,\n    \"pageSize\": 4494,\n    \"totalPages\": 2031,\n    \"totalCount\": 7789\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "263882c1-abf0-498c-b6c1-f4aa6f453aa1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d44ab886-8369-4314-908f-d54bed061c5a",
+          "name": "List Monitored Users",
+          "request": {
+            "name": "List Monitored Users",
+            "description": {
+              "content": "Returns a list of users across monitored customer tenants. Includes user activity summary and risk indicators.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<string>",
+                  "description": "Filter by customer identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "application",
+                  "value": "<string>",
+                  "description": "Filter by application"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25",
+                  "description": "Number of users per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "00c28dfe-f3cd-417f-9137-61406d2545f9",
+              "name": "List of monitored users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"userId\": \"user@acme.com\",\n      \"customerId\": \"string\",\n      \"customerName\": \"string\",\n      \"applications\": [\n        \"string\",\n        \"string\"\n      ],\n      \"lastActivity\": \"2008-06-04T18:38:30.450Z\",\n      \"riskScore\": 91,\n      \"alertCount\": 5092\n    },\n    {\n      \"userId\": \"user@acme.com\",\n      \"customerId\": \"string\",\n      \"customerName\": \"string\",\n      \"applications\": [\n        \"string\",\n        \"string\"\n      ],\n      \"lastActivity\": \"2013-07-29T05:18:34.742Z\",\n      \"riskScore\": 49,\n      \"alertCount\": 2613\n    }\n  ],\n  \"pagination\": {\n    \"page\": 8388,\n    \"pageSize\": 6474,\n    \"totalPages\": 7623,\n    \"totalCount\": 5616\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa530625-9642-40c9-ac70-175678bfb695",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.saasalerts.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5084c7ac-39fb-420e-9ad7-964957f690f0",
+    "name": "SaaS Alerts Events Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SaaS Alerts API provides programmatic access to the SaaS Alerts security monitoring platform for MSPs. The API enables querying of security events, alerts, and user behavior data detected across monitored SaaS applications including Microsoft 365, Google Workspace, Salesforce, Slack, and Dropbox. Authentication uses API keys generated from the SaaS Alerts management interface.\n\nContact Support:\n Name: SaaS Alerts Support",
+      "type": "text/plain"
+    }
+  }
+}
