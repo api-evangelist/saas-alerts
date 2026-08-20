@@ -27,6 +27,14 @@ tags:
   - SaaS Security
   - Security Monitoring
   - Threat Detection
+  - Microsoft-365
+  - Google Workspace
+  - MSSP
+tags_raw:
+  - MSP
+  - SaaS Security
+  - Security Monitoring
+  - Threat Detection
   - Microsoft 365
   - Google Workspace
   - MSSP
@@ -40,6 +48,8 @@ apis:
   humanURL: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
   baseURL: https://api.saasalerts.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
