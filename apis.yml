@@ -7,6 +7,18 @@ description: >-
   machine learning-based threat detection, automated remediation workflows, multi-tenant MSP management, and integration
   with PSA and RMM platforms. SaaS Alerts was acquired by Kaseya in 2023.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
