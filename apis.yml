@@ -89,6 +89,11 @@ apis:
   - type: Authentication
     url: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
 common:
+  - type: ParentCompany
+    url: https://apis.io/providers/kaseya/
+    name: Kaseya
+    x-relationship: acquired
+    x-evidence: "SaaS Alerts was acquired by Kaseya in 2023."
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/saas-alerts/overview
   - type: AgenticAccess
