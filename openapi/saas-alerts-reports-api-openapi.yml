@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: SaaS Alerts Events Reports API
+  title: SaaS Alerts Reports API
   description: The SaaS Alerts API provides programmatic access to the SaaS Alerts security monitoring platform for MSPs. The API enables querying of security events, alerts, and user behavior data detected across monitored SaaS applications including Microsoft 365, Google Workspace, Salesforce, Slack, and Dropbox. Authentication uses API keys generated from the SaaS Alerts management interface.
   version: 0.20.0
   contact:
@@ -173,80 +173,6 @@ components:
             $ref: '#/components/schemas/SecurityAlert'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    UsersResponse:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/MonitoredUser'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    Customer:
-      type: object
-      properties:
-        customerId:
-          type: string
-          description: Unique customer identifier
-          example: cust_abc123
-        name:
-          type: string
-          description: Customer organization name
-          example: Acme Corporation
-        applications:
-          type: array
-          description: Monitored SaaS applications for this customer
-          items:
-            type: string
-          example:
-          - microsoft365
-          - google_workspace
-        userCount:
-          type: integer
-          description: Number of monitored users
-          example: 150
-        status:
-          type: string
-          description: Monitoring status
-          enum:
-          - active
-          - inactive
-          - suspended
-          example: active
-        createdAt:
-          type: string
-          format: date-time
-          description: Customer onboarding date
-    MonitoredUser:
-      type: object
-      properties:
-        userId:
-          type: string
-          description: User email or identifier
-          example: user@acme.com
-        customerId:
-          type: string
-          description: Customer identifier
-        customerName:
-          type: string
-          description: Customer name
-        applications:
-          type: array
-          description: Monitored applications for this user
-          items:
-            type: string
-        lastActivity:
-          type: string
-          format: date-time
-          description: Most recent event timestamp
-        riskScore:
-          type: integer
-          description: Computed user risk score (0-100)
-          minimum: 0
-          maximum: 100
-        alertCount:
-          type: integer
-          description: Number of active alerts for this user
     SecurityAlert:
       type: object
       properties:
@@ -297,6 +223,36 @@ components:
           description: Event IDs that triggered this alert
           items:
             type: string
+    MonitoredUser:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User email or identifier
+          example: user@acme.com
+        customerId:
+          type: string
+          description: Customer identifier
+        customerName:
+          type: string
+          description: Customer name
+        applications:
+          type: array
+          description: Monitored applications for this user
+          items:
+            type: string
+        lastActivity:
+          type: string
+          format: date-time
+          description: Most recent event timestamp
+        riskScore:
+          type: integer
+          description: Computed user risk score (0-100)
+          minimum: 0
+          maximum: 100
+        alertCount:
+          type: integer
+          description: Number of active alerts for this user
     CustomersResponse:
       type: object
       properties:
@@ -306,6 +262,41 @@ components:
             $ref: '#/components/schemas/Customer'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: Unique customer identifier
+          example: cust_abc123
+        name:
+          type: string
+          description: Customer organization name
+          example: Acme Corporation
+        applications:
+          type: array
+          description: Monitored SaaS applications for this customer
+          items:
+            type: string
+          example:
+          - microsoft365
+          - google_workspace
+        userCount:
+          type: integer
+          description: Number of monitored users
+          example: 150
+        status:
+          type: string
+          description: Monitoring status
+          enum:
+          - active
+          - inactive
+          - suspended
+          example: active
+        createdAt:
+          type: string
+          format: date-time
+          description: Customer onboarding date
     Pagination:
       type: object
       properties:
@@ -321,6 +312,15 @@ components:
         totalCount:
           type: integer
           description: Total record count
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitoredUser'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,8 +1,7 @@
 {
   "provider": "saas-alerts",
   "sources": [
-    "saas-alerts-events-api-openapi.yml",
-    "saas-alerts-reports-api-openapi.yml"
+    "_original/saas-alerts-openapi.yml"
   ],
   "outputs": [
     "saas-alerts-events-api-openapi.yml",
@@ -11,6 +10,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "saas-alerts-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "saas-alerts-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "saas-alerts-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
