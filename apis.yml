@@ -40,7 +40,7 @@ tags:
   - SaaS Security
   - Security Monitoring
   - Threat Detection
-  - Microsoft-365
+  - Microsoft 365
   - Google Workspace
   - MSSP
 tags_raw:
@@ -51,6 +51,7 @@ tags_raw:
   - Microsoft 365
   - Google Workspace
   - MSSP
+  - Microsoft-365
 created: '2026-03-27'
 modified: '2026-05-19'
 specificationVersion: '0.23'

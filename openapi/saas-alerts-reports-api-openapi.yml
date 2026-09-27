@@ -173,6 +173,39 @@ components:
             $ref: '#/components/schemas/SecurityAlert'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Records per page
+        totalPages:
+          type: integer
+          description: Total number of pages
+        totalCount:
+          type: integer
+          description: Total record count
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitoredUser'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    CustomersResponse:
+      type: object
+      properties:
+        customers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     SecurityAlert:
       type: object
       properties:
@@ -223,45 +256,6 @@ components:
           description: Event IDs that triggered this alert
           items:
             type: string
-    MonitoredUser:
-      type: object
-      properties:
-        userId:
-          type: string
-          description: User email or identifier
-          example: user@acme.com
-        customerId:
-          type: string
-          description: Customer identifier
-        customerName:
-          type: string
-          description: Customer name
-        applications:
-          type: array
-          description: Monitored applications for this user
-          items:
-            type: string
-        lastActivity:
-          type: string
-          format: date-time
-          description: Most recent event timestamp
-        riskScore:
-          type: integer
-          description: Computed user risk score (0-100)
-          minimum: 0
-          maximum: 100
-        alertCount:
-          type: integer
-          description: Number of active alerts for this user
-    CustomersResponse:
-      type: object
-      properties:
-        customers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Customer'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Customer:
       type: object
       properties:
@@ -297,30 +291,36 @@ components:
           type: string
           format: date-time
           description: Customer onboarding date
-    Pagination:
+    MonitoredUser:
       type: object
       properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Records per page
-        totalPages:
-          type: integer
-          description: Total number of pages
-        totalCount:
-          type: integer
-          description: Total record count
-    UsersResponse:
-      type: object
-      properties:
-        users:
+        userId:
+          type: string
+          description: User email or identifier
+          example: user@acme.com
+        customerId:
+          type: string
+          description: Customer identifier
+        customerName:
+          type: string
+          description: Customer name
+        applications:
           type: array
+          description: Monitored applications for this user
           items:
-            $ref: '#/components/schemas/MonitoredUser'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+            type: string
+        lastActivity:
+          type: string
+          format: date-time
+          description: Most recent event timestamp
+        riskScore:
+          type: integer
+          description: Computed user risk score (0-100)
+          minimum: 0
+          maximum: 100
+        alertCount:
+          type: integer
+          description: Number of active alerts for this user
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
