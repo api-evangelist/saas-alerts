@@ -173,6 +173,15 @@ components:
         totalCount:
           type: integer
           description: Total record count
+    EventsResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityEvent'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     SecurityEvent:
       type: object
       properties:
@@ -225,15 +234,6 @@ components:
           type: object
           description: Additional event-specific details
           additionalProperties: true
-    EventsResponse:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/SecurityEvent'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     EventQueryRequest:
       type: object
       properties:
