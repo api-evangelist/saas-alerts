@@ -91,6 +91,9 @@ apis:
   - type: Authentication
     url: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
 common:
+  - type: CapabilityMap
+    url: capabilities/saas-alerts-capability-edges.yml
+    name: SaaS Alerts Business Capability Map
   - type: ParentCompany
     url: https://apis.io/providers/kaseya/
     name: Kaseya
