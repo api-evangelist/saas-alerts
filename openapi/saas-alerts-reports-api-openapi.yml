@@ -173,15 +173,6 @@ components:
             $ref: '#/components/schemas/MonitoredUser'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    CustomersResponse:
-      type: object
-      properties:
-        customers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Customer'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     MonitoredUser:
       type: object
       properties:
@@ -212,15 +203,41 @@ components:
         alertCount:
           type: integer
           description: Number of active alerts for this user
-    AlertsResponse:
+    Customer:
       type: object
       properties:
-        alerts:
+        customerId:
+          type: string
+          description: Unique customer identifier
+          example: cust_abc123
+        name:
+          type: string
+          description: Customer organization name
+          example: Acme Corporation
+        applications:
           type: array
+          description: Monitored SaaS applications for this customer
           items:
-            $ref: '#/components/schemas/SecurityAlert'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+            type: string
+          example:
+          - microsoft365
+          - google_workspace
+        userCount:
+          type: integer
+          description: Number of monitored users
+          example: 150
+        status:
+          type: string
+          description: Monitoring status
+          enum:
+          - active
+          - inactive
+          - suspended
+          example: active
+        createdAt:
+          type: string
+          format: date-time
+          description: Customer onboarding date
     Pagination:
       type: object
       properties:
@@ -236,6 +253,24 @@ components:
         totalCount:
           type: integer
           description: Total record count
+    AlertsResponse:
+      type: object
+      properties:
+        alerts:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityAlert'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    CustomersResponse:
+      type: object
+      properties:
+        customers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     SecurityAlert:
       type: object
       properties:
@@ -286,41 +321,6 @@ components:
           description: Event IDs that triggered this alert
           items:
             type: string
-    Customer:
-      type: object
-      properties:
-        customerId:
-          type: string
-          description: Unique customer identifier
-          example: cust_abc123
-        name:
-          type: string
-          description: Customer organization name
-          example: Acme Corporation
-        applications:
-          type: array
-          description: Monitored SaaS applications for this customer
-          items:
-            type: string
-          example:
-          - microsoft365
-          - google_workspace
-        userCount:
-          type: integer
-          description: Number of monitored users
-          example: 150
-        status:
-          type: string
-          description: Monitoring status
-          enum:
-          - active
-          - inactive
-          - suspended
-          example: active
-        createdAt:
-          type: string
-          format: date-time
-          description: Customer onboarding date
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

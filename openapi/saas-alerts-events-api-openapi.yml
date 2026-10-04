@@ -158,30 +158,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Records per page
-        totalPages:
-          type: integer
-          description: Total number of pages
-        totalCount:
-          type: integer
-          description: Total record count
-    EventsResponse:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/SecurityEvent'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     SecurityEvent:
       type: object
       properties:
@@ -293,6 +269,30 @@ components:
           type: integer
           description: Page number
           default: 1
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Records per page
+        totalPages:
+          type: integer
+          description: Total number of pages
+        totalCount:
+          type: integer
+          description: Total record count
+    EventsResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityEvent'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
