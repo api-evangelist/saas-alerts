@@ -53,7 +53,7 @@ tags_raw:
   - MSSP
   - Microsoft-365
 created: '2026-03-27'
-modified: '2026-05-19'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: saas-alerts:saas-alerts-events-api
@@ -91,6 +91,10 @@ apis:
   - type: Authentication
     url: https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm
 common:
+  - url: https://saasalerts.com/blogs/
+    type: Blog
+  - url: https://saasalerts.com/feed/
+    type: BlogRSS
   - type: CapabilityMap
     url: capabilities/saas-alerts-capability-edges.yml
     name: SaaS Alerts Business Capability Map
