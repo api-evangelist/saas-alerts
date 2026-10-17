@@ -158,58 +158,21 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    SecurityEvent:
+    Pagination:
       type: object
       properties:
-        eventId:
-          type: string
-          description: Unique event identifier
-          example: evt_1234567890abcdef
-        eventType:
-          type: string
-          description: Event type classification
-          example: login.failure
-        jointDesc:
-          type: string
-          description: Human-readable event description
-          example: IAM Event - Authentication Failure
-        alertStatus:
-          type: string
-          description: Event severity
-          enum:
-          - low
-          - medium
-          - critical
-          example: critical
-        application:
-          type: string
-          description: SaaS application where event occurred
-          example: microsoft365
-        customerId:
-          type: string
-          description: Customer/tenant identifier
-          example: cust_abc123
-        customerName:
-          type: string
-          description: Customer name
-          example: Acme Corporation
-        userId:
-          type: string
-          description: User identifier
-          example: user@acme.com
-        sourceIp:
-          type: string
-          description: Source IP address
-          example: 198.51.100.42
-        timestamp:
-          type: string
-          format: date-time
-          description: Event timestamp
-          example: '2024-01-15T14:23:11Z'
-        details:
-          type: object
-          description: Additional event-specific details
-          additionalProperties: true
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Records per page
+        totalPages:
+          type: integer
+          description: Total number of pages
+        totalCount:
+          type: integer
+          description: Total record count
     EventQueryRequest:
       type: object
       properties:
@@ -269,21 +232,6 @@ components:
           type: integer
           description: Page number
           default: 1
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Records per page
-        totalPages:
-          type: integer
-          description: Total number of pages
-        totalCount:
-          type: integer
-          description: Total record count
     EventsResponse:
       type: object
       properties:
@@ -293,6 +241,58 @@ components:
             $ref: '#/components/schemas/SecurityEvent'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    SecurityEvent:
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: Unique event identifier
+          example: evt_1234567890abcdef
+        eventType:
+          type: string
+          description: Event type classification
+          example: login.failure
+        jointDesc:
+          type: string
+          description: Human-readable event description
+          example: IAM Event - Authentication Failure
+        alertStatus:
+          type: string
+          description: Event severity
+          enum:
+          - low
+          - medium
+          - critical
+          example: critical
+        application:
+          type: string
+          description: SaaS application where event occurred
+          example: microsoft365
+        customerId:
+          type: string
+          description: Customer/tenant identifier
+          example: cust_abc123
+        customerName:
+          type: string
+          description: Customer name
+          example: Acme Corporation
+        userId:
+          type: string
+          description: User identifier
+          example: user@acme.com
+        sourceIp:
+          type: string
+          description: Source IP address
+          example: 198.51.100.42
+        timestamp:
+          type: string
+          format: date-time
+          description: Event timestamp
+          example: '2024-01-15T14:23:11Z'
+        details:
+          type: object
+          description: Additional event-specific details
+          additionalProperties: true
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

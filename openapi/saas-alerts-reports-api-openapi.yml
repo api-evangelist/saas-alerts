@@ -164,15 +164,21 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    UsersResponse:
+    Pagination:
       type: object
       properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/MonitoredUser'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Records per page
+        totalPages:
+          type: integer
+          description: Total number of pages
+        totalCount:
+          type: integer
+          description: Total record count
     MonitoredUser:
       type: object
       properties:
@@ -238,30 +244,6 @@ components:
           type: string
           format: date-time
           description: Customer onboarding date
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Current page number
-        pageSize:
-          type: integer
-          description: Records per page
-        totalPages:
-          type: integer
-          description: Total number of pages
-        totalCount:
-          type: integer
-          description: Total record count
-    AlertsResponse:
-      type: object
-      properties:
-        alerts:
-          type: array
-          items:
-            $ref: '#/components/schemas/SecurityAlert'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     CustomersResponse:
       type: object
       properties:
@@ -269,6 +251,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Customer'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitoredUser'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    AlertsResponse:
+      type: object
+      properties:
+        alerts:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityAlert'
         pagination:
           $ref: '#/components/schemas/Pagination'
     SecurityAlert:
