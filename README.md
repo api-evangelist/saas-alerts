@@ -1,4 +1,4 @@
-# SaaS Alerts (saas-alerts)
+# SaaS Alerts
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,67 +66,163 @@
 
 SaaS Alerts is a SaaS security monitoring platform purpose-built for Managed Service Providers (MSPs). The platform detects anomalous user behavior, data exfiltration, account compromise, and unauthorized access across cloud applications including Microsoft 365, Google Workspace, Salesforce, Slack, and Dropbox. Key capabilities include machine learning-based threat detection, automated remediation workflows, multi-tenant MSP management, and integration with PSA and RMM platforms. SaaS Alerts was acquired by Kaseya in 2023.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/saas-alerts/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/saas-alerts/refs/heads/main/apis.yml)
+**Areas:** MSP · SaaS Security · Security Monitoring · Threat Detection · Microsoft 365 · Google Workspace · MSSP
 
-## Scope
+## SaaS Alerts on APIs.io
 
-- **Type:** Index
+Everything profiled for SaaS Alerts is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/saas-alerts/](https://apis.io/providers/saas-alerts/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (2)
 
-- MSP
-- SaaS Security
-- Security Monitoring
-- Threat Detection
-- Microsoft 365
-- Google Workspace
-- MSSP
+- [SaaS Alerts Events API](https://apis.io/apis/saas-alerts/saas-alerts-events-api/) — SaaS security event queries and reporting
+- [SaaS Alerts Reports API](https://apis.io/apis/saas-alerts/saas-alerts-reports-api/) — Security event report generation
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-27
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### SaaS Alerts API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-REST API (v0.20.0) providing programmatic access to the SaaS Alerts security monitoring platform. Enables MSP tools and SIEM/SOAR integrations to query security events, retrieve alerts, and access monitored user and customer data. Eight API methods including GET and POST operations for event querying and reporting. Authentication uses API keys generated in the management interface.
+- [Saas Alerts Agentic Access](https://apis.io/agentic-access/saas-alerts/saas-alerts-agentic-access/)
 
-- **Human URL:** [https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm](https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm)
-- **Base URL:** `https://api.saasalerts.com`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- SaaS Security
-- Events
-- Alerts
-- MSP
+- [SaaS Alerts Security Alert](https://apis.io/schemas/saas-alerts/saas-alerts-alert/)
+- [SaaS Alerts Security Event](https://apis.io/schemas/saas-alerts/saas-alerts-security-event/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/saas-alerts/refs/heads/main/openapi/saas-alerts-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Swagger Hub](https://app.swaggerhub.com/apis/SaaS_Alerts/functions/0.20.0)
-- [Authentication](https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm)
-- [Postman Collection](collections/saas-alerts.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/saas-alerts.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Saas Alerts Security Event Structure](https://apis.io/json-structure/saas-alerts/saas-alerts-security-event-structure/)
 
-- [LinkedIn](https://www.linkedin.com/company/saas-alerts)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Saas Alerts Context](https://apis.io/jsonld/saas-alerts/saas-alerts-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [SaaS Alerts Vocabulary](https://apis.io/vocabularies/saas-alerts/saas-alerts-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Saas Alerts List Security Events Example](https://apis.io/examples/saas-alerts/saas-alerts-list-security-events-example/)
+- [Saas Alerts Query Security Events Example](https://apis.io/examples/saas-alerts/saas-alerts-query-security-events-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [SaaS Alerts API](https://apis.io/collections/saas-alerts/open-saas-alerts/)
+- [SaaS Alerts Events API](https://apis.io/collections/saas-alerts/open-saas-alerts-events-api/)
+- [SaaS Alerts Events Reports API](https://apis.io/collections/saas-alerts/open-saas-alerts-reports-api/)
+- [SaaS Alerts Events API](https://apis.io/collections/saas-alerts/postman-saas-alerts-events-api/)
+- [SaaS Alerts Events Reports API](https://apis.io/collections/saas-alerts/postman-saas-alerts-reports-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [SaaS Alerts — jsonschema rules](https://apis.io/rules/saas-alerts/saas-alerts-jsonschema-spectral-rules/)
+- [SaaS Alerts API Rules](https://apis.io/rules/saas-alerts/saas-alerts-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Saas Alerts Authentication](https://apis.io/security/saas-alerts/saas-alerts-authentication/)
+- [Saas Alerts Domain Security](https://apis.io/security/saas-alerts/saas-alerts-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Saas Alerts Plans Pricing](https://apis.io/plans/saas-alerts/saas-alerts-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Saas Alerts Rate Limits](https://apis.io/rate-limits/saas-alerts/saas-alerts-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Saas Alerts Finops](https://apis.io/finops/saas-alerts/saas-alerts-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.saasalerts.com)
 - [Documentation](https://help.saasalerts.kaseya.com/help/Content/Home/saas-alerts-msp-admin-guide.htm)
-- [A P I Documentation](https://help.saasalerts.kaseya.com/help/Content/How-To/using-the-saas-alerts-api.htm)
-- [Blog](https://www.saasalerts.com/blog)
-- [Platform Overview](https://saasalerts.com/platform-overview-for-msps/)
-- [Integrations](https://saasalerts.com/msp-tools/)
-- [Privacy Policy](https://www.saasalerts.com/privacy-policy)
-- [Terms of Service](https://www.saasalerts.com/terms)
-- [Login](https://app.saasalerts.com)
 - [Pricing](https://www.saasalerts.com/pricing)
+- [Blog](https://saasalerts.com/blogs/)
+- [Terms of service](https://www.saasalerts.com/terms)
+- [Privacy policy](https://www.saasalerts.com/privacy-policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 39.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 53.5 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 46.1 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/saas-alerts/](https://apis.io/providers/saas-alerts/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SaaS Alerts: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/saas-alerts/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
